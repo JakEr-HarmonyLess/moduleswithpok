@@ -1,24 +1,28 @@
 local admin = {["Poklava"]=true,["Jaker#9310"]=true}
+
 local maps,cmd = {1,2,3,4,5},{}
+
 local colors = {
     teams = {
         red = "0xff0000",
         blue = "0x0004FF",
     },
 }
+
 local teams = {
     red = {},
     blue = {},
 }
+
 local room, players = tfm.get.room, tfm.get.room.playerList
 
 function eventNewGame()
     makeTeams()
     for _,reders in next, teams.red do
-        tfm.exec.setNameColor(reders, colors.red)
+        tfm.exec.setNameColor(reders, colors.teams.red)
     end
     for _,bluers in next, teams.blue do
-        tfm.exec.setNameColor(bluers, colors.blue)
+        tfm.exec.setNameColor(bluers, colors.teams.blue)
     end
     tfm.exec.setGameTime(300)
 end
