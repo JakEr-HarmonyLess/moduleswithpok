@@ -18,10 +18,10 @@ local room, players = tfm.get.room, tfm.get.room.playerList
 
 function eventNewGame()
     makeTeams()
-    for _,reders in next, teams.red do
+    for reders in next, teams.red do
         tfm.exec.setNameColor(reders, colors.teams.red)
     end
-    for _,bluers in next, teams.blue do
+    for bluers in next, teams.blue do
         tfm.exec.setNameColor(bluers, colors.teams.blue)
     end
     tfm.exec.setGameTime(300)
