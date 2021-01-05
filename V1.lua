@@ -37,27 +37,14 @@ function mice()
     return i
 end
 
-function haveTeamsNumber(fv, sv, n)
-    local chances = {false,true}
-    local chance = chances[math.random(#chances)]
-    if chance then
-        fv = math.ceil(n/2)
-        sv = math.floor(n/2)
-    else sv = math.ceil(n/2)
-        fv = math.floor(n/2)
-    end
-    return fv,sv
-end
-
 function makeTeams()
+    teams.red = {}
+    teams.blue = {}
     local preteams,team1,team2 = {}
     for mouse in next, players do
         preteams[#preteams+1] = mouse
     end
     local n = #preteams/2
-    if math.ceil(n) ~= n then
-        team1, team2 = haveTeamsNumber(team1, team2, #preteams)
-    end
     local chance = {true,false}
     local chance = chance[math.random(#chance)]
     local team_m,team_p
@@ -65,10 +52,10 @@ function makeTeams()
         team_m = "red"
         team_p = "blue"
     else team_m = "blue"
-        team_p = 'red'
-     end
-    for i = 1,team1 or n do
-        local num = math.random(n)
+        team_p = "red"
+    end
+    for i = 1, math.ceil(#preteams/2) do
+        local num = math.random(math.ceil(#preteams/2))
         teams[team_m][preteams[num]] = true
         preteams[num] = nil
     end
